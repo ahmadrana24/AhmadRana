@@ -1,146 +1,165 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #1e1e2f;
   line-height: 1.6;
-  background-color: #ffffff;
-  color: #333;
-  font-size: 16px;
-  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: #00bcd4;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0097a7;
 }
 
 .container {
   width: 90%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
-  padding: 4rem 0;
+  padding: 2rem 0;
 }
 
-h1,
-h2,
-h3 {
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-/* Hero */
-#hero {
-  background-color: #f0f4f8;
+header {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 2rem 0;
   text-align: center;
-  padding: 5rem 1rem;
 }
 
-#hero h1 {
+header h1 {
   font-size: 3rem;
-  color: #0f172a;
-}
-
-#hero .tagline {
-  font-size: 1.25rem;
-  margin-top: 0.5rem;
-  color: #475569;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #2563eb;
-}
-
-/* Sections */
-section {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-#skills .skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-#skills .skills-list li {
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 500;
-}
-
-/* Projects Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.project {
-  padding: 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #f9fafb;
-}
-
-.project h3 {
-  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
-.project a {
-  color: #3b82f6;
-  text-decoration: none;
-  margin-right: 0.5rem;
+header p {
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
-.project a:hover {
-  text-decoration: underline;
+nav {
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
 }
 
-/* Contact & Footer */
-#contact p,
-#contact a {
-  font-size: 1rem;
-  margin: 0.3rem 0;
-  color: #1e3a8a;
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav ul li a {
+  font-weight: bold;
+  color: #1e1e2f;
+}
+
+nav ul li a:hover {
+  color: #00bcd4;
+}
+
+section {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+section p {
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.project {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.store-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.store-links a img {
+  width: 32px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.store-links a img:hover {
+  transform: scale(1.1);
 }
 
 footer {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 2rem 0;
   text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.9rem;
-  background-color: #f3f4f6;
-  color: #6b7280;
 }
 
-/* Responsive Typography */
-@media (max-width: 768px) {
-  #hero h1 {
-    font-size: 2.25rem;
+footer p {
+  font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
   }
 
-  .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-up.appear {
+  opacity: 1;
+  transform: translateY(0);
 }
