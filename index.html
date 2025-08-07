@@ -1,183 +1,192 @@
+<!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="styles.css" />
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ahmed Ashraf | Mobile App Developer</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" />
-    <script defer src="main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="assets/img/AR.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- =====BOX ICONS===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Ahmad Rana</title>
 </head>
 
 <body>
-    <header class="hero">
-        <div class="container">
-            <h1>Ahmed Ashraf</h1>
-            <p>Flutter Developer | Innovator | Entrepreneur</p>
-        </div>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+
+                <a href="#" class="nav__logo">Ahmad Rana</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link">Portfolio</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
     </header>
 
-    <section class="about container fade-in">
-        <h2>About Me</h2>
-        <p>
-            I’m a Flutter developer with 5+ years of experience building high-performance, scalable applications.
-            Passionate about technology-driven solutions with a deep understanding of cross-platform app development,
-            digital strategy, and tech policy.
-        </p>
-    </section>
+    <main class="l-main">
+        <!--===== HOME =====-->
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <br><br>
+                <h1 class="home__title">Hellow,<br>I'am <span class="home__title-color">Ahmad Rana</span><br> Flutter
+                    Developer
+                </h1>
 
-    <section class="portfolio container fade-in">
-        <h2>Published Apps</h2>
-        <div class="portfolio-grid">
-            <!-- App 1 -->
-            <div class="app-card">
-                <h3>SailorsHub</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/us/app/sailorsbay-gear-up-sail-on/id6745481795" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
+                <a href=" https://www.fiverr.com/ahamdrana" class="button">Contact</a>
+            </div>
+            <br><br><br><br>
+            <div class="home__social">
+                <a href="https://www.linkedin.com/in/ahmed-rana-667270178/" class="home__social-icon"><i
+                        class='bx bxl-linkedin'></i></a>
+                <a href="https://www.facebook.com/ahmadrana24/" class="home__social-icon"><i
+                        class='bx bxl-facebook'></i></a>
+                <a href="https://www.github.com/ahmadrana24" class="home__social-icon"><i class='bx bxl-github'></i></a>
             </div>
 
-            <!-- App 2 -->
-            <div class="app-card">
-                <h3>Synapp Messaging</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.synapp.app" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/fr/app/synapp-messaging/id1591750660" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
+            <div class="home__img">
+                <img src="assets/img/thandiyani.jpg" alt="">
             </div>
+        </section>
+        <!--===== WORK =====-->
+        <section class="work section" id="work">
+            <h2 class="section-title">Portfolio</h2>
 
-            <!-- App 3 -->
-            <div class="app-card">
-                <h3>GN Blue</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.gnnetworking.gnnetworking" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/us/app/gn-blue/id6476933608" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
+            <div class="work__container bd-grid">
+                <div class="work__img">
+                    <img src="assets/img/swibles.png" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/rubafit.png" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/okin.png" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/omah.png" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/op_pvt.png" alt="">
+                </div>
+                <div class="work__img">
+                    <img src="assets/img/my_ceo.png" alt="">
+                </div>
             </div>
+        </section>
 
-            <!-- App 4 -->
-            <div class="app-card">
-                <h3>La Regione</h3>
-                <a href="https://play.google.com/store/apps/details?id=ch.laregione.app&hl=en&gl=US" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/pk/app/laregione-online/id1320937454" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
+        <!--===== ABOUT =====-->
+        <section class="about section " id="about">
+            <h2 class="section-title">About</h2>
+
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="assets/img/first_sem.jpg" alt="">
+                </div>
+
+                <div>
+                    <h2 class="about__subtitle">I'am Ahmad Rana</h2>
+                    <p class="about__text">Hey, I am a Software Engineer and Mobile App developer and designer. I build
+                        top quality, user-friendly and responsive
+                        custom Mobile Apps for both Andriod and IOS using Google Flutter tech. I can develop & design
+                        any kind of Mobile App. I have learnt Flutter mobile development or widget development from many
+                        platforms to perfect my
+                        skills and expertise. <br><br> You can contact me for Flutter projects: <br> <b>
+                            Ahmedashrafbse009@gmail.com</b></b> <br> <b>
+                            +923145809559</b>
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <!-- App 5 -->
-            <div class="app-card">
-                <h3>Trendys</h3>
-                <a href="https://play.google.com/store/apps/details?id=fr.trendys.app&hl=en&gl=US" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
+        <!--===== SKILLS =====-->
+        <section class="skills section" id="skills">
+            <h2 class="section-title">My Skills</h2>
+
+            <div class="skills__container bd-grid">
+                <div>
+                    <h2 class="skills__subtitle">Profesional Skills</h2>
+                    <p class="skills__text">I develop Mobile Apps for both Android and IOS using Flutter.</p>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <span class="skills__name">Dart</span>
+                        </div>
+                        <div class="skills__bar skills__html">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">95%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <span class="skills__name">Flutter</span>
+                        </div>
+                        <div class="skills__bar skills__css">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">85%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <span class="skills__name">Firebase</span>
+                        </div>
+                        <div class="skills__bar skills__js">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">90%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <span class="skills__name">UX/UI</span>
+                        </div>
+                        <div class="skills__bar skills__ux">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">95%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="assets/img/develop.jpg" alt="" class="skills__img">
+                </div>
             </div>
+        </section>
 
-            <!-- App 6 -->
-            <div class="app-card">
-                <h3>Contes</h3>
-                <a href="https://apps.apple.com/us/app/contes/id1616591831" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
 
-            <!-- App 7 -->
-            <div class="app-card">
-                <h3>Quotimation</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.quotimation.quotimation" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/app/quotimation-app/id1616807647" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
 
-            <!-- App 8 -->
-            <div class="app-card">
-                <h3>OneClickList</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.oneclicklist.oneclicklist" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/us/app/oneclicklist/id6443803112" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
 
-            <!-- App 9 -->
-            <div class="app-card">
-                <h3>RizScan</h3>
-                <a href="https://apps.apple.com/us/app/rizscan/id1618661052" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
+        <!--===== FOOTER =====-->
+        <footer class="footer">
+            <p class="footer__title">Thank you for visiting</p>
+            <p class="footer__title">Ahmad Rana</p>
 
-            <!-- App 10 -->
-            <div class="app-card">
-                <h3>OmniMed</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.omnimed.omnimed" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-                <a href="https://apps.apple.com/us/app/omnimed/id6749166666" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
 
-            <!-- App 11 -->
-            <div class="app-card">
-                <h3>CycleMate</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.cyclemate.cyclemate" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                        alt="Google Play">
-                </a>
-            </div>
+            <p>&#169; 2020 copyright all right reserved</p>
+        </footer>
 
-            <!-- App 12 -->
-            <div class="app-card">
-                <h3>ReproNova</h3>
-                <a href="https://apps.apple.com/us/app/repronova/id6745343104" target="_blank">
-                    <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                        alt="App Store">
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <footer class="footer fade-in">
-        <div class="container">
-            <p>Contact: ahmedashrafbse009@gmail.com | +923145809559</p>
-            <p>
-                <a href="https://www.linkedin.com/in/ahmed-ashraf-667270178" target="_blank">LinkedIn</a>
-            </p>
-        </div>
-    </footer>
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <script src="assets/js/main.js"></script>
 </body>
 
 </html>
