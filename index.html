@@ -1,192 +1,831 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="assets/img/AR.png">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ahmed Ashraf — Portfolio</title>
+    <meta name="description"
+        content="Ahmed Ashraf — Flutter & Product-minded developer. Published apps, skills, contact." />
+    <meta name="color-scheme" content="dark light">
 
-    <!-- =====BOX ICONS===== -->
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* -------------------------
+       VARIABLES & BASE
+       ------------------------- */
+        :root {
+            --bg: #071322;
+            --card: #0b1722;
+            --muted: #98a0b3;
+            --glass: rgba(255, 255, 255, 0.03);
+            --accent: #6ee7b7;
+            --accent-2: #7dd3fc;
+            --radius: 14px;
+            --maxw: 1100px;
+            --glass-2: rgba(255, 255, 255, 0.02);
+            --text: #e6eef8;
+        }
 
-    <title>Ahmad Rana</title>
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #04121a 0%, var(--bg) 40%);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 28px 20px;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto
+        }
+
+        /* -------------------------
+       HEADER / NAV
+       ------------------------- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px
+        }
+
+        .brand {
+            display: flex;
+            gap: 14px;
+            align-items: center
+        }
+
+        .logo {
+            width: 62px;
+            height: 62px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #04202a;
+            font-weight: 800;
+            font-size: 18px;
+            box-shadow: 0 6px 20px rgba(3, 6, 10, 0.6);
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 18px
+        }
+
+        .brand p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        nav a.cta {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #04202a
+        }
+
+        /* -------------------------
+       HERO
+       ------------------------- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 28px;
+            align-items: center;
+            padding: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px)
+        }
+
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: 26px
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--glass-2);
+            font-weight: 700;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .hero-card {
+            padding: 16px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02))
+        }
+
+        .hero-device {
+            width: 220px;
+            height: 420px;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #071427, #052033);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02)
+        }
+
+        /* -------------------------
+       SECTIONS
+       ------------------------- */
+        section {
+            margin-top: 28px
+        }
+
+        h3.section-title {
+            margin: 0 0 14px;
+            font-size: 20px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--card), #071322);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(2, 6, 12, 0.6)
+        }
+
+        /* -------------------------
+       SKILLS
+       ------------------------- */
+        .skills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .skill {
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--glass);
+            color: var(--muted);
+            font-weight: 700
+        }
+
+        /* -------------------------
+       PUBLISHED APPS GRID
+       ------------------------- */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 12px
+        }
+
+        .app {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform .22s ease, box-shadow .22s ease;
+            min-height: 255px;
+        }
+
+        .app:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(2, 8, 20, 0.6)
+        }
+
+        .app .icon {
+            width: 92px;
+            height: 92px;
+            border-radius: 18px;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .app .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .app h4 {
+            margin: 0 0 8px;
+            font-size: 16px
+        }
+
+        .app p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            min-height: 36px
+        }
+
+        .store-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px
+        }
+
+        .store-links a img {
+            height: 36px;
+            display: block
+        }
+
+        /* initials fallback */
+        .initials {
+            width: 72px;
+            height: 72px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #102a34, #063a46);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--accent);
+            font-size: 22px
+        }
+
+        /* -------------------------
+       CONTACT
+       ------------------------- */
+        .contact-card {
+            padding: 16px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, var(--glass), transparent)
+        }
+
+        form {
+            display: grid;
+            gap: 8px
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: transparent;
+            color: var(--text)
+        }
+
+        button {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            color: #04202a;
+            padding: 10px;
+            border-radius: 10px;
+            border: 0;
+            font-weight: 800;
+            cursor: pointer
+        }
+
+        /* -------------------------
+       FOOTER
+       ------------------------- */
+        footer {
+            margin-top: 28px;
+            padding: 18px;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        /* -------------------------
+       REUSABLE
+       ------------------------- */
+        .muted {
+            color: var(--muted)
+        }
+
+        a.app-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 700
+        }
+
+        /* -------------------------
+       RESPONSIVE
+       ------------------------- */
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .apps-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:640px) {
+            body {
+                padding: 18px
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px
+            }
+
+            nav {
+                display: none
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start
+            }
+        }
+
+        /* animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(8px);
+            animation: fadeUp .7s ease forwards
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!--===== HEADER =====-->
-    <header class="l-header">
-        <nav class="nav bd-grid">
-            <div>
-
-                <a href="#" class="nav__logo">Ahmad Rana</a>
-            </div>
-
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link">Portfolio</a></li>
-                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                </ul>
-            </div>
-
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
-            </div>
-        </nav>
-    </header>
-
-    <main class="l-main">
-        <!--===== HOME =====-->
-        <section class="home bd-grid" id="home">
-            <div class="home__data">
-                <br><br>
-                <h1 class="home__title">Hellow,<br>I'am <span class="home__title-color">Ahmad Rana</span><br> Flutter
-                    Developer
-                </h1>
-
-                <a href=" https://www.fiverr.com/ahamdrana" class="button">Contact</a>
-            </div>
-            <br><br><br><br>
-            <div class="home__social">
-                <a href="https://www.linkedin.com/in/ahmed-rana-667270178/" class="home__social-icon"><i
-                        class='bx bxl-linkedin'></i></a>
-                <a href="https://www.facebook.com/ahmadrana24/" class="home__social-icon"><i
-                        class='bx bxl-facebook'></i></a>
-                <a href="https://www.github.com/ahmadrana24" class="home__social-icon"><i class='bx bxl-github'></i></a>
-            </div>
-
-            <div class="home__img">
-                <img src="assets/img/thandiyani.jpg" alt="">
-            </div>
-        </section>
-        <!--===== WORK =====-->
-        <section class="work section" id="work">
-            <h2 class="section-title">Portfolio</h2>
-
-            <div class="work__container bd-grid">
-                <div class="work__img">
-                    <img src="assets/img/swibles.png" alt="">
-                </div>
-                <div class="work__img">
-                    <img src="assets/img/rubafit.png" alt="">
-                </div>
-                <div class="work__img">
-                    <img src="assets/img/okin.png" alt="">
-                </div>
-                <div class="work__img">
-                    <img src="assets/img/omah.png" alt="">
-                </div>
-                <div class="work__img">
-                    <img src="assets/img/op_pvt.png" alt="">
-                </div>
-                <div class="work__img">
-                    <img src="assets/img/my_ceo.png" alt="">
-                </div>
-            </div>
-        </section>
-
-        <!--===== ABOUT =====-->
-        <section class="about section " id="about">
-            <h2 class="section-title">About</h2>
-
-            <div class="about__container bd-grid">
-                <div class="about__img">
-                    <img src="assets/img/first_sem.jpg" alt="">
-                </div>
-
+    <div class="wrap">
+        <!-- header -->
+        <header>
+            <div class="brand">
+                <div class="logo">AA</div>
                 <div>
-                    <h2 class="about__subtitle">I'am Ahmad Rana</h2>
-                    <p class="about__text">Hey, I am a Software Engineer and Mobile App developer and designer. I build
-                        top quality, user-friendly and responsive
-                        custom Mobile Apps for both Andriod and IOS using Google Flutter tech. I can develop & design
-                        any kind of Mobile App. I have learnt Flutter mobile development or widget development from many
-                        platforms to perfect my
-                        skills and expertise. <br><br> You can contact me for Flutter projects: <br> <b>
-                            Ahmedashrafbse009@gmail.com</b></b> <br> <b>
-                            +923145809559</b>
-                    </p>
+                    <h1>Ahmed Ashraf</h1>
+                    <p class="muted">Flutter • Product-minded developer • MS (NUST) — Innovation & Entrepreneurship</p>
                 </div>
             </div>
-        </section>
 
-        <!--===== SKILLS =====-->
-        <section class="skills section" id="skills">
-            <h2 class="section-title">My Skills</h2>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#apps">Published Apps</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact" class="cta">Contact</a>
+            </nav>
+        </header>
 
-            <div class="skills__container bd-grid">
+        <!-- hero -->
+        <main>
+            <section class="hero fade-up" aria-labelledby="intro">
                 <div>
-                    <h2 class="skills__subtitle">Profesional Skills</h2>
-                    <p class="skills__text">I develop Mobile Apps for both Android and IOS using Flutter.</p>
-                    <div class="skills__data">
-                        <div class="skills__names">
-                            <span class="skills__name">Dart</span>
-                        </div>
-                        <div class="skills__bar skills__html">
+                    <h2 id="intro">I design and ship mobile apps that solve real user problems.</h2>
+                    <p class="muted">4+ years building Flutter apps, integrating Firebase & AI, and publishing products
+                        on App Store & Google Play. I blend product thinking with clean engineering.</p>
 
-                        </div>
-                        <div>
-                            <span class="skills__percentage">95%</span>
-                        </div>
+                    <div class="badges">
+                        <div class="badge">Flutter & Dart</div>
+                        <div class="badge">Firebase</div>
+                        <div class="badge">AI Integrations</div>
+                        <div class="badge">Product Strategy</div>
                     </div>
-                    <div class="skills__data">
-                        <div class="skills__names">
-                            <span class="skills__name">Flutter</span>
-                        </div>
-                        <div class="skills__bar skills__css">
 
-                        </div>
-                        <div>
-                            <span class="skills__percentage">85%</span>
-                        </div>
-                    </div>
-                    <div class="skills__data">
-                        <div class="skills__names">
-                            <span class="skills__name">Firebase</span>
-                        </div>
-                        <div class="skills__bar skills__js">
-
-                        </div>
-                        <div>
-                            <span class="skills__percentage">90%</span>
-                        </div>
-                    </div>
-                    <div class="skills__data">
-                        <div class="skills__names">
-                            <span class="skills__name">UX/UI</span>
-                        </div>
-                        <div class="skills__bar skills__ux">
-
-                        </div>
-                        <div>
-                            <span class="skills__percentage">95%</span>
-                        </div>
+                    <div style="margin-top:18px">
+                        <a href="#apps" class="app-link" style="margin-right:12px">See published apps →</a>
+                        <a href="#contact" class="app-link">Hire / Collaborate</a>
                     </div>
                 </div>
 
-                <div>
-                    <img src="assets/img/develop.jpg" alt="" class="skills__img">
+                <aside class="hero-card">
+                    <div class="hero-device">
+                        <div style="text-align:center">
+                            <div style="font-weight:800;font-size:18px">App previews</div>
+                            <div class="muted" style="font-size:13px;margin-top:8px">Tap an app to open store listing
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- ABOUT -->
+            <section id="about" class="fade-up" style="margin-top:26px">
+                <div class="card">
+                    <h3 class="section-title">About me</h3>
+                    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+                        <div style="flex:1;min-width:240px">
+                            <p>I’m Ahmed — a product-minded Flutter developer who values clarity, shipping, and building
+                                solutions that help people get real work done. I’m currently pursuing an MS in
+                                Innovation & Entrepreneurship at NUST and completed an exchange semester at Yasar
+                                University.</p>
+                            <ul class="muted" style="margin-top:10px">
+                                <li>President — NUST Student Forum</li>
+                                <li>Published apps across App Store & Play Store</li>
+                                <li>Freelance developer and product thinker</li>
+                            </ul>
+                        </div>
+                        <div style="width:320px;min-width:220px">
+                            <div class="contact-card">
+                                <h4 style="margin:0">Contact</h4>
+                                <p class="muted" style="margin-top:8px">Available for freelance & product
+                                    collaborations. Tell me your timeline and budget and I’ll propose a plan.</p>
+                                <p style="margin-top:10px"><strong>Email</strong><br /><a
+                                        href="mailto:ahmedashrafbse009@gmail.com"
+                                        class="app-link">ahmedashrafbse009@gmail.com</a></p>
+                                <p><strong>LinkedIn</strong><br /><a
+                                        href="https://linkedin.com/in/ahmed-ashraf-667270178" target="_blank"
+                                        class="app-link">linkedin.com/in/ahmed-ashraf-667270178</a></p>
+                                <div style="margin-top:12px"><button onclick="copyEmail()">Copy email</button></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section id="skills" class="fade-up">
+                <h3 class="section-title">Skills & Tools</h3>
+                <div class="card">
+                    <div style="display:flex;flex-direction:column;gap:12px">
+                        <div class="skills">
+                            <div class="skill">Flutter & Dart</div>
+                            <div class="skill">Firebase</div>
+                            <div class="skill">REST & GraphQL</div>
+                            <div class="skill">OpenAI / GPT</div>
+                            <div class="skill">CI / CD</div>
+                            <div class="skill">UX & Product Strategy</div>
+                        </div>
+                        <div style="margin-top:8px;color:var(--muted)">I focus on shipping small iterative releases,
+                            clear UX, and testable architecture that scales.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PUBLISHED APPS -->
+            <section id="apps" class="fade-up">
+                <h3 class="section-title">Published Apps</h3>
+                <p class="muted" style="text-align:center;margin-bottom:14px">Tap badges to open App Store or Play
+                    Store. Icons shown are official where provided.</p>
+
+                <div class="apps-grid">
+
+                    <!-- Quotimation -->
+                    <article class="app" id="app-quotimation">
+                        <div class="icon">
+                            <!-- user provided play-lh image (used as app icon) -->
+                            <img src="https://play-lh.googleusercontent.com/cQAKmt6G8P8Oyfe-yGcEM5Us5PoiUceM7--rQn6N_t1GUE6haCby4wdykt9V36i-PvMs=w240-h480-rw"
+                                alt="Quotimation icon">
+                        </div>
+                        <h4>Quotimation</h4>
+                        <p class="muted">Quick inspirational quote app with scheduling & sharing features. Published on
+                            App Store & Play Store.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/app/quotimation-app/id1616807647" target="_blank"
+                                title="Open App Store — Quotimation">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.quotimation.quotimation"
+                                target="_blank" title="Open Play Store — Quotimation">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- OneClickList -->
+                    <article class="app" id="app-oneclicklist">
+                        <div class="icon">
+                            <!-- fallback initials: O -->
+                            <div class="initials">OC</div>
+                        </div>
+                        <h4>OneClickList</h4>
+                        <p class="muted">A lightweight list & task-sharing app built for teams and events. Supports CSV
+                            / Excel export.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/oneclicklist/id6443803112" target="_blank"
+                                title="Open App Store — OneClickList">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.oneclicklist.oneclicklist"
+                                target="_blank" title="Open Play Store — OneClickList">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- RizScan -->
+                    <article class="app" id="app-rizscan">
+                        <div class="icon">
+                            <div class="initials">RZ</div>
+                        </div>
+                        <h4>RizScan</h4>
+                        <p class="muted">Document & barcode scanner app with OCR export and fast sharing workflows.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/rizscan/id1618661052" target="_blank"
+                                title="Open App Store — RizScan">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- OmniMed -->
+                    <article class="app" id="app-omnimed">
+                        <div class="icon">
+                            <img src="https://play-lh.googleusercontent.com/gcJI7fYDCthVdLLof91gTY8IM2C-DIuHTl9xMF7FyvULf3KtuQWeFRkFwJ8cXGj8y9buCDu23hZdljZXo5dRVqs=w240-h480-rw"
+                                alt="OmniMed icon">
+                        </div>
+                        <h4>OmniMed</h4>
+                        <p class="muted">Clinic & patient portal: appointment management, teleconsultation, and record
+                            sync.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/omnimed/id6749166666" target="_blank"
+                                title="Open App Store — OmniMed">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.omnimed.omnimed" target="_blank"
+                                title="Open Play Store — OmniMed">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- CycleMate -->
+                    <article class="app" id="app-cyclemate">
+                        <div class="icon">
+                            <div class="initials">CM</div>
+                        </div>
+                        <h4>CycleMate</h4>
+                        <p class="muted">Health & cycle tracking for wellbeing with notifications and calendar sync.</p>
+                        <div class="store-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.cyclemate.cyclemate"
+                                target="_blank" title="Open Play Store — CycleMate">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Repronova -->
+                    <article class="app" id="app-repronova">
+                        <div class="icon">
+                            <img src="https://play-lh.googleusercontent.com/Bex94CTwHs1Fr4rhyWwilwmRFs7us2aB1PSo8U6Uq7CrxFfb6r3S9iYmGC3NSe87bRiE=w240-h480-rw"
+                                alt="Repronova icon">
+                        </div>
+                        <h4>Repronova</h4>
+                        <p class="muted">Fertility & reproductive health companion — tracking, resources, and clinic
+                            links.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/repronova/id6745343104" target="_blank"
+                                title="Open App Store — Repronova">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub"
+                                target="_blank" title="Open Play Store — Repronova (Play link)">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- SailorsBay (user-provided icon) -->
+                    <article class="app" id="app-sailorsbay">
+                        <div class="icon">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c0/87/4a/c0874a91-bb9a-61e4-556c-07a90eb6c177/AppIcon-0-0-1x_U007emarketing-0-11-0-0-85-220.png/230x0w.webp"
+                                alt="SailorsBay icon">
+                        </div>
+                        <h4>SailorsBay</h4>
+                        <p class="muted">Gear-up & community for sailors — listings, events, and marine resources.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/sailorsbay-gear-up-sail-on/id6745481795"
+                                target="_blank" title="Open App Store — SailorsBay">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub"
+                                target="_blank" title="Open Play Store — SailorsBay">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- SynApp -->
+                    <article class="app" id="app-synapp">
+                        <div class="icon">
+                            <div class="initials">SY</div>
+                        </div>
+                        <h4>SynApp</h4>
+                        <p class="muted">Secure messaging with team features and media sync.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/fr/app/synapp-messaging/id1591750660" target="_blank"
+                                title="Open App Store — SynApp">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.synapp.app&pli=1" target="_blank"
+                                title="Open Play Store — SynApp">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- GN-Blue -->
+                    <article class="app" id="app-gnblue">
+                        <div class="icon">
+                            <div class="initials">GN</div>
+                        </div>
+                        <h4>GN Blue</h4>
+                        <p class="muted">Networking tool with profiles & job postings for GN community.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/us/app/gn-blue/id6476933608" target="_blank"
+                                title="Open App Store — GN Blue">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.gnnetworking.gnnetworking"
+                                target="_blank" title="Open Play Store — GN Blue">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- LaRegione (user-provided icon) -->
+                    <article class="app" id="app-laregione">
+                        <div class="icon">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0a/e2/08/0ae208d3-0f1e-368e-4724-cc1306115033/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/230x0w.webp"
+                                alt="laRegione icon">
+                        </div>
+                        <h4>LaRegione Online</h4>
+                        <p class="muted">Regional news app with curated articles and push alerts.</p>
+                        <div class="store-links">
+                            <a href="https://apps.apple.com/pk/app/laregione-online/id1320937454" target="_blank"
+                                title="Open App Store — LaRegione">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=ch.laregione.app&hl=en&gl=US"
+                                target="_blank" title="Open Play Store — LaRegione">
+                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
+                                    alt="Google Play badge">
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- AnyWhereBusinessCard (user-provided icon) -->
+                    <article class="app" id="app-anywhere">
+                        <div class="icon">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/04/c0/3c/04c03ceb-14df-c3b5-78b6-19cdae673178/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp"
+                                alt="AnyWhere Business Card icon">
+                        </div>
+                        <h4>AnyWhereBusinessCard</h4>
+                        <p class="muted">Digital business card, QR sharing & contact management for professionals.</p>
+                        <div class="store-links">
+                            <a href="#" target="_blank" title="App Store">
+                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
+                                    alt="App Store badge">
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact" class="fade-up" style="margin-top:28px">
+                <h3 class="section-title">Work with me</h3>
+                <div class="card contact-card">
+                    <p class="muted">Tell me briefly about your project, timeline and budget — I’ll reply with a plan
+                        and next steps.</p>
+                    <form onsubmit="handleContact(event)"
+                        style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                        <input id="name" type="text" placeholder="Your name" required />
+                        <input id="email" type="email" placeholder="Your email" required />
+                        <textarea id="message" rows="4" placeholder="Short project description"
+                            style="grid-column:1/-1"></textarea>
+                        <div style="display:flex;gap:8px;grid-column:1/-1;justify-content:flex-start">
+                            <button type="submit">Send message</button>
+                            <button type="button" onclick="copyEmail()">Copy my email</button>
+                            <small id="formStatus" style="color:var(--muted);align-self:center;margin-left:6px"></small>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- footer -->
+        <footer>
+            <div>© Ahmed Ashraf — Built with ❤️ & Flutter spirit</div>
+            <div style="display:flex;gap:12px;align-items:center"><a href="https://ahmadrana24.github.io/AhmadRana/"
+                    target="_blank" class="app-link">Old portfolio</a><a
+                    href="https://linkedin.com/in/ahmed-ashraf-667270178" target="_blank" class="app-link">LinkedIn</a>
             </div>
-        </section>
-
-
-
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Thank you for visiting</p>
-            <p class="footer__title">Ahmad Rana</p>
-
-
-            <p>&#169; 2020 copyright all right reserved</p>
         </footer>
+    </div>
 
+    <script>
+        // Copy email to clipboard
+        function copyEmail() {
+            navigator.clipboard.writeText('ahmedashrafbse009@gmail.com').then(() => {
+                alert('Email copied to clipboard');
+            }, () => { alert('Copy failed — please copy manually') });
+        }
 
-        <script src="https://unpkg.com/scrollreveal"></script>
+        // Contact form — opens a mailto for quick demo (swap with real backend later)
+        function handleContact(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const status = document.getElementById('formStatus');
+            status.textContent = 'Preparing mail...';
+            const subject = encodeURIComponent('Project enquiry — ' + name);
+            const body = encodeURIComponent(message + '\\n\\nContact: ' + email);
+            // open mailto (user can send)
+            window.location.href = `mailto:ahmedashrafbse009@gmail.com?subject=${subject}&body=${body}`;
+            status.textContent = 'Opening your email client...';
+        }
 
-        <script src="assets/js/main.js"></script>
+        // Simple reveal animation on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-up').forEach((el, i) => {
+                el.style.animationDelay = (i * 120) + 'ms';
+                el.classList.add('visible');
+            });
+        });
+    </script>
 </body>
 
 </html>
