@@ -1,831 +1,1267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Ahmed Ashraf — Portfolio</title>
-    <meta name="description"
-        content="Ahmed Ashraf — Flutter & Product-minded developer. Published apps, skills, contact." />
-    <meta name="color-scheme" content="dark light">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Ashraf - Software Engineer & Innovation Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* -------------------------
-       VARIABLES & BASE
-       ------------------------- */
         :root {
-            --bg: #071322;
-            --card: #0b1722;
-            --muted: #98a0b3;
-            --glass: rgba(255, 255, 255, 0.03);
-            --accent: #6ee7b7;
-            --accent-2: #7dd3fc;
-            --radius: 14px;
-            --maxw: 1100px;
-            --glass-2: rgba(255, 255, 255, 0.02);
-            --text: #e6eef8;
+            --primary: #0A0E27;
+            --secondary: #1A1F3A;
+            --accent: #00D9FF;
+            --accent-warm: #FF6B35;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8C5D6;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
+            --gradient-3: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
         }
 
         * {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
-        }
-
-        body {
             margin: 0;
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: linear-gradient(180deg, #04121a 0%, var(--bg) 40%);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            padding: 28px 20px;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .wrap {
-            max-width: var(--maxw);
-            margin: 0 auto
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* -------------------------
-       HEADER / NAV
-       ------------------------- */
-        header {
+        /* Animated background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--accent) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--accent-warm) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, #667eea 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 14, 39, 0.85);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 28px
-        }
-
-        .brand {
-            display: flex;
-            gap: 14px;
-            align-items: center
+            align-items: center;
         }
 
         .logo {
-            width: 62px;
-            height: 62px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #04202a;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4.5rem;
             font-weight: 800;
-            font-size: 18px;
-            box-shadow: 0 6px 20px rgba(3, 6, 10, 0.6);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .brand h1 {
-            margin: 0;
-            font-size: 18px
-        }
-
-        .brand p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 13px
-        }
-
-        nav {
-            display: flex;
-            gap: 10px;
-            align-items: center
-        }
-
-        nav a {
-            color: var(--muted);
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 10px;
+        .hero-subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
             font-weight: 600;
         }
 
-        nav a.cta {
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
-            color: #04202a
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
 
-        /* -------------------------
-       HERO
-       ------------------------- */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 28px;
-            align-items: center;
-            padding: 28px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-            border-radius: var(--radius);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(6px)
-        }
-
-        .hero h2 {
-            margin: 0 0 8px;
-            font-size: 26px
-        }
-
-        .hero p {
-            margin: 0;
-            color: var(--muted)
-        }
-
-        .badges {
+        .cta-buttons {
             display: flex;
-            gap: 10px;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-top: 16px
         }
 
-        .badge {
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: var(--glass-2);
-            font-weight: 700;
-            color: var(--muted);
-            font-size: 13px
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
-        .hero-card {
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02))
+        .btn-primary {
+            background: var(--gradient-2);
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
         }
 
-        .hero-device {
-            width: 220px;
-            height: 420px;
-            border-radius: 18px;
-            background: linear-gradient(180deg, #071427, #052033);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02)
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
         }
 
-        /* -------------------------
-       SECTIONS
-       ------------------------- */
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .hero-stats {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateY(-5px);
+            background: rgba(26, 31, 58, 0.8);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Section Styling */
         section {
-            margin-top: 28px
+            padding: 6rem 5%;
         }
 
-        h3.section-title {
-            margin: 0 0 14px;
-            font-size: 20px
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px
-        }
-
-        .card {
-            background: linear-gradient(180deg, var(--card), #071322);
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(2, 6, 12, 0.6)
-        }
-
-        /* -------------------------
-       SKILLS
-       ------------------------- */
-        .skills {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        .skill {
-            padding: 8px 12px;
-            border-radius: 10px;
-            background: var(--glass);
-            color: var(--muted);
-            font-weight: 700
-        }
-
-        /* -------------------------
-       PUBLISHED APPS GRID
-       ------------------------- */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-top: 12px
-        }
-
-        .app {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
-            border-radius: 12px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
             text-align: center;
-            transition: transform .22s ease, box-shadow .22s ease;
-            min-height: 255px;
         }
 
-        .app:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 30px rgba(2, 8, 20, 0.6)
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: var(--accent-warm);
+            font-weight: 500;
         }
 
-        .app .icon {
-            width: 92px;
-            height: 92px;
-            border-radius: 18px;
-            background: var(--glass);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: rgba(26, 31, 58, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
             overflow: hidden;
         }
 
-        .app .icon img {
-            width: 100%;
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
             height: 100%;
-            object-fit: cover;
-            display: block
+            background: var(--gradient-2);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease;
         }
 
-        .app h4 {
-            margin: 0 0 8px;
-            font-size: 16px
+        .experience-card:hover::before {
+            transform: scaleY(1);
         }
 
-        .app p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 13px;
-            min-height: 36px
+        .experience-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateX(10px);
+            background: rgba(26, 31, 58, 0.6);
         }
 
-        .store-links {
+        .experience-header {
             display: flex;
-            gap: 10px;
-            margin-top: 12px
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
         }
 
-        .store-links a img {
-            height: 36px;
-            display: block
+        .experience-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
         }
 
-        /* initials fallback */
-        .initials {
-            width: 72px;
-            height: 72px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #102a34, #063a46);
+        .experience-company {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-warm);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 31, 58, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient-1);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
             font-weight: 800;
-            color: var(--accent);
-            font-size: 22px
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* -------------------------
-       CONTACT
-       ------------------------- */
-        .contact-card {
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, var(--glass), transparent)
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
 
-        form {
-            display: grid;
-            gap: 8px
+        .project-card:hover .project-image::before {
+            transform: translateX(100%);
         }
 
-        input,
-        textarea {
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            background: transparent;
-            color: var(--text)
+        .project-content {
+            padding: 2rem;
         }
 
-        button {
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
-            color: #04202a;
-            padding: 10px;
-            border-radius: 10px;
-            border: 0;
-            font-weight: 800;
-            cursor: pointer
+        .project-category {
+            color: var(--accent-warm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* -------------------------
-       FOOTER
-       ------------------------- */
-        footer {
-            margin-top: 28px;
-            padding: 18px;
-            border-radius: 10px;
-            background: transparent;
-            color: var(--muted);
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px
+            gap: 1rem;
         }
 
-        /* -------------------------
-       REUSABLE
-       ------------------------- */
-        .muted {
-            color: var(--muted)
-        }
-
-        a.app-link {
-            color: var(--muted);
+        .project-link {
+            padding: 0.6rem 1.5rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            color: var(--accent);
             text-decoration: none;
-            font-weight: 700
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
-        /* -------------------------
-       RESPONSIVE
-       ------------------------- */
-        @media (max-width:980px) {
-            .hero {
-                grid-template-columns: 1fr
+        .project-link:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(26, 31, 58, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .skill-item {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-item::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: rgba(26, 31, 58, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateX(10px);
+        }
+
+        .education-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .education-info h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-degree {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-highlights {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: rgba(26, 31, 58, 0.3);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: rgba(26, 31, 58, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-warm);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
-            .apps-grid {
-                grid-template-columns: repeat(2, 1fr)
+            h1 {
+                font-size: 3.5rem;
             }
 
-            .grid {
-                grid-template-columns: repeat(2, 1fr)
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width:640px) {
-            body {
-                padding: 18px
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
             }
 
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px
+            h1 {
+                font-size: 2.5rem;
             }
 
-            nav {
-                display: none
+            .hero-subtitle {
+                font-size: 1.3rem;
             }
 
-            .apps-grid {
-                grid-template-columns: 1fr
+            h2 {
+                font-size: 2rem;
             }
 
-            .grid {
-                grid-template-columns: 1fr
+            .projects-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
             }
 
-            footer {
-                flex-direction: column;
-                align-items: flex-start
+            .education-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .education-icon {
+                margin: 0 auto;
             }
         }
 
-        /* animations */
-        .fade-up {
+        /* Scroll Animation */
+        .fade-in {
             opacity: 0;
-            transform: translateY(8px);
-            animation: fadeUp .7s ease forwards
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: none
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-
 <body>
-    <div class="wrap">
-        <!-- header -->
-        <header>
-            <div class="brand">
-                <div class="logo">AA</div>
-                <div>
-                    <h1>Ahmed Ashraf</h1>
-                    <p class="muted">Flutter • Product-minded developer • MS (NUST) — Innovation & Entrepreneurship</p>
+    <div class="bg-animated"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">AR</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-label">Software Engineer & Innovator</span>
+                <h1>Ahmed Ashraf</h1>
+                <p class="hero-subtitle">Crafting Digital Excellence Through Innovation</p>
+                <p class="hero-description">
+                    Recognized Flutter developer with 5+ years of experience building transformative mobile applications. 
+                    From 150+ global projects to 10+ published apps with millions of downloads, I turn complex challenges 
+                    into elegant, scalable solutions. Currently pursuing MS in Innovation & Entrepreneurship at NUST.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Global Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Published Apps</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <span class="section-tag">Professional Journey</span>
+            <h2>Experience</h2>
+            <p class="section-description">
+                Building innovative solutions across mobile development, data science, and editorial work
+            </p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card fade-in">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Mobile Application Developer</h3>
+                        <p class="experience-company">Flutter Developer (Freelance)</p>
+                    </div>
+                    <span class="experience-date">March 2020 - Present</span>
+                </div>
+                <p class="experience-description">
+                    Leading mobile development initiatives with 150+ successful projects worldwide. Specialized in building 
+                    high-performance, feature-rich applications across diverse industries including news, travel, networking, 
+                    medical, AI, and SaaS solutions. Published 10+ apps on both App Store and Google Play with outstanding 
+                    user ratings and millions of downloads.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">API Integration</span>
+                    <span class="tech-tag">Xcode</span>
+                    <span class="tech-tag">Android Studio</span>
+                    <span class="tech-tag">UI/UX Design</span>
                 </div>
             </div>
 
-            <nav>
-                <a href="#about">About</a>
-                <a href="#apps">Published Apps</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact" class="cta">Contact</a>
-            </nav>
-        </header>
-
-        <!-- hero -->
-        <main>
-            <section class="hero fade-up" aria-labelledby="intro">
-                <div>
-                    <h2 id="intro">I design and ship mobile apps that solve real user problems.</h2>
-                    <p class="muted">4+ years building Flutter apps, integrating Firebase & AI, and publishing products
-                        on App Store & Google Play. I blend product thinking with clean engineering.</p>
-
-                    <div class="badges">
-                        <div class="badge">Flutter & Dart</div>
-                        <div class="badge">Firebase</div>
-                        <div class="badge">AI Integrations</div>
-                        <div class="badge">Product Strategy</div>
+            <div class="experience-card fade-in">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Data Specialist</h3>
+                        <p class="experience-company">COMSATS University Islamabad</p>
                     </div>
-
-                    <div style="margin-top:18px">
-                        <a href="#apps" class="app-link" style="margin-right:12px">See published apps →</a>
-                        <a href="#contact" class="app-link">Hire / Collaborate</a>
-                    </div>
+                    <span class="experience-date">July 2019 - August 2019</span>
                 </div>
-
-                <aside class="hero-card">
-                    <div class="hero-device">
-                        <div style="text-align:center">
-                            <div style="font-weight:800;font-size:18px">App previews</div>
-                            <div class="muted" style="font-size:13px;margin-top:8px">Tap an app to open store listing
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </section>
-
-            <!-- ABOUT -->
-            <section id="about" class="fade-up" style="margin-top:26px">
-                <div class="card">
-                    <h3 class="section-title">About me</h3>
-                    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
-                        <div style="flex:1;min-width:240px">
-                            <p>I’m Ahmed — a product-minded Flutter developer who values clarity, shipping, and building
-                                solutions that help people get real work done. I’m currently pursuing an MS in
-                                Innovation & Entrepreneurship at NUST and completed an exchange semester at Yasar
-                                University.</p>
-                            <ul class="muted" style="margin-top:10px">
-                                <li>President — NUST Student Forum</li>
-                                <li>Published apps across App Store & Play Store</li>
-                                <li>Freelance developer and product thinker</li>
-                            </ul>
-                        </div>
-                        <div style="width:320px;min-width:220px">
-                            <div class="contact-card">
-                                <h4 style="margin:0">Contact</h4>
-                                <p class="muted" style="margin-top:8px">Available for freelance & product
-                                    collaborations. Tell me your timeline and budget and I’ll propose a plan.</p>
-                                <p style="margin-top:10px"><strong>Email</strong><br /><a
-                                        href="mailto:ahmedashrafbse009@gmail.com"
-                                        class="app-link">ahmedashrafbse009@gmail.com</a></p>
-                                <p><strong>LinkedIn</strong><br /><a
-                                        href="https://linkedin.com/in/ahmed-ashraf-667270178" target="_blank"
-                                        class="app-link">linkedin.com/in/ahmed-ashraf-667270178</a></p>
-                                <div style="margin-top:12px"><button onclick="copyEmail()">Copy email</button></div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="experience-description">
+                    Developed sophisticated recommender systems for academic citations using advanced machine learning 
+                    techniques. Leveraged Python libraries including NumPy, SciPy, Gensim, and NLTK in Google Colab 
+                    to process and analyze large-scale academic datasets.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">SciPy</span>
+                    <span class="tech-tag">Gensim</span>
+                    <span class="tech-tag">NLTK</span>
+                    <span class="tech-tag">Machine Learning</span>
                 </div>
-            </section>
-
-            <!-- SKILLS -->
-            <section id="skills" class="fade-up">
-                <h3 class="section-title">Skills & Tools</h3>
-                <div class="card">
-                    <div style="display:flex;flex-direction:column;gap:12px">
-                        <div class="skills">
-                            <div class="skill">Flutter & Dart</div>
-                            <div class="skill">Firebase</div>
-                            <div class="skill">REST & GraphQL</div>
-                            <div class="skill">OpenAI / GPT</div>
-                            <div class="skill">CI / CD</div>
-                            <div class="skill">UX & Product Strategy</div>
-                        </div>
-                        <div style="margin-top:8px;color:var(--muted)">I focus on shipping small iterative releases,
-                            clear UX, and testable architecture that scales.</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PUBLISHED APPS -->
-            <section id="apps" class="fade-up">
-                <h3 class="section-title">Published Apps</h3>
-                <p class="muted" style="text-align:center;margin-bottom:14px">Tap badges to open App Store or Play
-                    Store. Icons shown are official where provided.</p>
-
-                <div class="apps-grid">
-
-                    <!-- Quotimation -->
-                    <article class="app" id="app-quotimation">
-                        <div class="icon">
-                            <!-- user provided play-lh image (used as app icon) -->
-                            <img src="https://play-lh.googleusercontent.com/cQAKmt6G8P8Oyfe-yGcEM5Us5PoiUceM7--rQn6N_t1GUE6haCby4wdykt9V36i-PvMs=w240-h480-rw"
-                                alt="Quotimation icon">
-                        </div>
-                        <h4>Quotimation</h4>
-                        <p class="muted">Quick inspirational quote app with scheduling & sharing features. Published on
-                            App Store & Play Store.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/app/quotimation-app/id1616807647" target="_blank"
-                                title="Open App Store — Quotimation">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.quotimation.quotimation"
-                                target="_blank" title="Open Play Store — Quotimation">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- OneClickList -->
-                    <article class="app" id="app-oneclicklist">
-                        <div class="icon">
-                            <!-- fallback initials: O -->
-                            <div class="initials">OC</div>
-                        </div>
-                        <h4>OneClickList</h4>
-                        <p class="muted">A lightweight list & task-sharing app built for teams and events. Supports CSV
-                            / Excel export.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/oneclicklist/id6443803112" target="_blank"
-                                title="Open App Store — OneClickList">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.oneclicklist.oneclicklist"
-                                target="_blank" title="Open Play Store — OneClickList">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- RizScan -->
-                    <article class="app" id="app-rizscan">
-                        <div class="icon">
-                            <div class="initials">RZ</div>
-                        </div>
-                        <h4>RizScan</h4>
-                        <p class="muted">Document & barcode scanner app with OCR export and fast sharing workflows.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/rizscan/id1618661052" target="_blank"
-                                title="Open App Store — RizScan">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- OmniMed -->
-                    <article class="app" id="app-omnimed">
-                        <div class="icon">
-                            <img src="https://play-lh.googleusercontent.com/gcJI7fYDCthVdLLof91gTY8IM2C-DIuHTl9xMF7FyvULf3KtuQWeFRkFwJ8cXGj8y9buCDu23hZdljZXo5dRVqs=w240-h480-rw"
-                                alt="OmniMed icon">
-                        </div>
-                        <h4>OmniMed</h4>
-                        <p class="muted">Clinic & patient portal: appointment management, teleconsultation, and record
-                            sync.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/omnimed/id6749166666" target="_blank"
-                                title="Open App Store — OmniMed">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.omnimed.omnimed" target="_blank"
-                                title="Open Play Store — OmniMed">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- CycleMate -->
-                    <article class="app" id="app-cyclemate">
-                        <div class="icon">
-                            <div class="initials">CM</div>
-                        </div>
-                        <h4>CycleMate</h4>
-                        <p class="muted">Health & cycle tracking for wellbeing with notifications and calendar sync.</p>
-                        <div class="store-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.cyclemate.cyclemate"
-                                target="_blank" title="Open Play Store — CycleMate">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Repronova -->
-                    <article class="app" id="app-repronova">
-                        <div class="icon">
-                            <img src="https://play-lh.googleusercontent.com/Bex94CTwHs1Fr4rhyWwilwmRFs7us2aB1PSo8U6Uq7CrxFfb6r3S9iYmGC3NSe87bRiE=w240-h480-rw"
-                                alt="Repronova icon">
-                        </div>
-                        <h4>Repronova</h4>
-                        <p class="muted">Fertility & reproductive health companion — tracking, resources, and clinic
-                            links.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/repronova/id6745343104" target="_blank"
-                                title="Open App Store — Repronova">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub"
-                                target="_blank" title="Open Play Store — Repronova (Play link)">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- SailorsBay (user-provided icon) -->
-                    <article class="app" id="app-sailorsbay">
-                        <div class="icon">
-                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c0/87/4a/c0874a91-bb9a-61e4-556c-07a90eb6c177/AppIcon-0-0-1x_U007emarketing-0-11-0-0-85-220.png/230x0w.webp"
-                                alt="SailorsBay icon">
-                        </div>
-                        <h4>SailorsBay</h4>
-                        <p class="muted">Gear-up & community for sailors — listings, events, and marine resources.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/sailorsbay-gear-up-sail-on/id6745481795"
-                                target="_blank" title="Open App Store — SailorsBay">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub"
-                                target="_blank" title="Open Play Store — SailorsBay">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- SynApp -->
-                    <article class="app" id="app-synapp">
-                        <div class="icon">
-                            <div class="initials">SY</div>
-                        </div>
-                        <h4>SynApp</h4>
-                        <p class="muted">Secure messaging with team features and media sync.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/fr/app/synapp-messaging/id1591750660" target="_blank"
-                                title="Open App Store — SynApp">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.synapp.app&pli=1" target="_blank"
-                                title="Open Play Store — SynApp">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- GN-Blue -->
-                    <article class="app" id="app-gnblue">
-                        <div class="icon">
-                            <div class="initials">GN</div>
-                        </div>
-                        <h4>GN Blue</h4>
-                        <p class="muted">Networking tool with profiles & job postings for GN community.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/us/app/gn-blue/id6476933608" target="_blank"
-                                title="Open App Store — GN Blue">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.gnnetworking.gnnetworking"
-                                target="_blank" title="Open Play Store — GN Blue">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- LaRegione (user-provided icon) -->
-                    <article class="app" id="app-laregione">
-                        <div class="icon">
-                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0a/e2/08/0ae208d3-0f1e-368e-4724-cc1306115033/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/230x0w.webp"
-                                alt="laRegione icon">
-                        </div>
-                        <h4>LaRegione Online</h4>
-                        <p class="muted">Regional news app with curated articles and push alerts.</p>
-                        <div class="store-links">
-                            <a href="https://apps.apple.com/pk/app/laregione-online/id1320937454" target="_blank"
-                                title="Open App Store — LaRegione">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=ch.laregione.app&hl=en&gl=US"
-                                target="_blank" title="Open Play Store — LaRegione">
-                                <img src="https://freelogopng.com/images/all_img/1664287128google-play-store-logo-png.png"
-                                    alt="Google Play badge">
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- AnyWhereBusinessCard (user-provided icon) -->
-                    <article class="app" id="app-anywhere">
-                        <div class="icon">
-                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/04/c0/3c/04c03ceb-14df-c3b5-78b6-19cdae673178/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp"
-                                alt="AnyWhere Business Card icon">
-                        </div>
-                        <h4>AnyWhereBusinessCard</h4>
-                        <p class="muted">Digital business card, QR sharing & contact management for professionals.</p>
-                        <div class="store-links">
-                            <a href="#" target="_blank" title="App Store">
-                                <img src="https://freelogopng.com/images/all_img/1685901477apple-logo-transparent.png"
-                                    alt="App Store badge">
-                            </a>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-            <!-- CONTACT -->
-            <section id="contact" class="fade-up" style="margin-top:28px">
-                <h3 class="section-title">Work with me</h3>
-                <div class="card contact-card">
-                    <p class="muted">Tell me briefly about your project, timeline and budget — I’ll reply with a plan
-                        and next steps.</p>
-                    <form onsubmit="handleContact(event)"
-                        style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                        <input id="name" type="text" placeholder="Your name" required />
-                        <input id="email" type="email" placeholder="Your email" required />
-                        <textarea id="message" rows="4" placeholder="Short project description"
-                            style="grid-column:1/-1"></textarea>
-                        <div style="display:flex;gap:8px;grid-column:1/-1;justify-content:flex-start">
-                            <button type="submit">Send message</button>
-                            <button type="button" onclick="copyEmail()">Copy my email</button>
-                            <small id="formStatus" style="color:var(--muted);align-self:center;margin-left:6px"></small>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- footer -->
-        <footer>
-            <div>© Ahmed Ashraf — Built with ❤️ & Flutter spirit</div>
-            <div style="display:flex;gap:12px;align-items:center"><a href="https://ahmadrana24.github.io/AhmadRana/"
-                    target="_blank" class="app-link">Old portfolio</a><a
-                    href="https://linkedin.com/in/ahmed-ashraf-667270178" target="_blank" class="app-link">LinkedIn</a>
             </div>
-        </footer>
-    </div>
+
+            <div class="experience-card fade-in">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="experience-title">Editorial Assistant</h3>
+                        <p class="experience-company">Springer Nature</p>
+                    </div>
+                    <span class="experience-date">June 2018 - July 2018</span>
+                </div>
+                <p class="experience-description">
+                    Contributed to the development of recommendation systems for academic content using data science 
+                    techniques. Applied natural language processing and machine learning algorithms to enhance content 
+                    discovery and citation networks.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Data Analysis</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Google Colab</span>
+                    <span class="tech-tag">Research</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <span class="section-tag">Featured Work</span>
+            <h2>Notable Projects</h2>
+            <p class="section-description">
+                A curated selection of applications demonstrating expertise across multiple domains
+            </p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    📰
+                </div>
+                <div class="project-content">
+                    <div class="project-category">News & Media</div>
+                    <h3 class="project-title">laRegione Online</h3>
+                    <p class="project-description">
+                        Comprehensive news application delivering real-time updates with elegant UI/UX. 
+                        Features push notifications, offline reading, and multimedia content support.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=ch.laregione.app&hl=en&gl=US" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/pk/app/laregione-online/id1320937454" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);">
+                    ⛵
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Travel & Lifestyle</div>
+                    <h3 class="project-title">SailorsBay</h3>
+                    <p class="project-description">
+                        Revolutionary sailing and marine lifestyle app connecting enthusiasts worldwide. 
+                        Includes GPS tracking, weather integration, and social networking features.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.sailorshub.sailorshub" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/us/app/sailorsbay-gear-up-sail-on/id6745481795" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);">
+                    🤝
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Networking</div>
+                    <h3 class="project-title">GN Blue</h3>
+                    <p class="project-description">
+                        Professional networking platform facilitating meaningful business connections. 
+                        Features include profile management, messaging, and event coordination.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.gnnetworking.gnnetworking" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/us/app/gn-blue/id6476933608" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                    💊
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Healthcare</div>
+                    <h3 class="project-title">SynApp Messaging</h3>
+                    <p class="project-description">
+                        Secure healthcare communication platform enabling seamless collaboration between 
+                        medical professionals. HIPAA-compliant with end-to-end encryption.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.synapp.app&pli=1" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/fr/app/synapp-messaging/id1591750660" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);">
+                    🏥
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Healthcare</div>
+                    <h3 class="project-title">ReproNova</h3>
+                    <p class="project-description">
+                        Comprehensive reproductive health application providing personalized insights and 
+                        tracking features. Empowering users with data-driven health management tools.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://apps.apple.com/us/app/repronova/id6745343104" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                    🤖
+                </div>
+                <div class="project-content">
+                    <div class="project-category">AI & Technology</div>
+                    <h3 class="project-title">YourCountry</h3>
+                    <p class="project-description">
+                        AI-powered application providing intelligent insights and personalized recommendations. 
+                        Leverages machine learning for enhanced user experience.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.countrylink.countrylink" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/us/app/yourcountry/id6752536668" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);">
+                    📊
+                </div>
+                <div class="project-content">
+                    <div class="project-category">SaaS Solution</div>
+                    <h3 class="project-title">Quotimation</h3>
+                    <p class="project-description">
+                        Enterprise-grade quotation and estimation management system streamlining business operations. 
+                        Features automated workflows and analytics dashboard.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.quotimation.quotimation" target="_blank" class="project-link">Android</a>
+                        <a href="https://apps.apple.com/app/quotimation-app/id1616807647" target="_blank" class="project-link">iOS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <span class="section-tag">Technical Expertise</span>
+            <h2>Skills & Technologies</h2>
+            <p class="section-description">
+                Comprehensive skill set spanning mobile development, business strategy, and innovation
+            </p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category fade-in">
+                <div class="skill-icon">📱</div>
+                <h3>Mobile Development</h3>
+                <div class="skill-list">
+                    <div class="skill-item">Flutter & Dart</div>
+                    <div class="skill-item">iOS (Xcode, Swift)</div>
+                    <div class="skill-item">Android (Android Studio, Kotlin)</div>
+                    <div class="skill-item">Cross-platform Development</div>
+                    <div class="skill-item">App Store & Play Store Deployment</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🔧</div>
+                <h3>Backend & Integration</h3>
+                <div class="skill-list">
+                    <div class="skill-item">Firebase Suite</div>
+                    <div class="skill-item">RESTful API Integration</div>
+                    <div class="skill-item">Real-time Database</div>
+                    <div class="skill-item">Cloud Functions</div>
+                    <div class="skill-item">Authentication & Security</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🎨</div>
+                <h3>Design & User Experience</h3>
+                <div class="skill-list">
+                    <div class="skill-item">UI/UX Design Principles</div>
+                    <div class="skill-item">Material Design</div>
+                    <div class="skill-item">Responsive Layouts</div>
+                    <div class="skill-item">Custom Animations</div>
+                    <div class="skill-item">Accessibility Standards</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <div class="skill-icon">💼</div>
+                <h3>Business & Strategy</h3>
+                <div class="skill-list">
+                    <div class="skill-item">Finance & Budgeting</div>
+                    <div class="skill-item">Marketing Strategy</div>
+                    <div class="skill-item">Strategic Management</div>
+                    <div class="skill-item">Operations Management</div>
+                    <div class="skill-item">Innovation & Entrepreneurship</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <div class="skill-icon">⚙️</div>
+                <h3>Advanced Features</h3>
+                <div class="skill-list">
+                    <div class="skill-item">In-app Chat & Messaging</div>
+                    <div class="skill-item">Payment Integration (Stripe, etc.)</div>
+                    <div class="skill-item">Maps & Geolocation</div>
+                    <div class="skill-item">Push Notifications</div>
+                    <div class="skill-item">Analytics & Monitoring</div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in">
+                <div class="skill-icon">🛠️</div>
+                <h3>Tools & Workflow</h3>
+                <div class="skill-list">
+                    <div class="skill-item">Git & Version Control</div>
+                    <div class="skill-item">Jira (Agile Project Management)</div>
+                    <div class="skill-item">CI/CD Pipelines</div>
+                    <div class="skill-item">Performance Optimization</div>
+                    <div class="skill-item">Bug Tracking & Debugging</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="section-header">
+            <span class="section-tag">Academic Background</span>
+            <h2>Education</h2>
+            <p class="section-description">
+                Combining technical excellence with business acumen and international exposure
+            </p>
+        </div>
+        <div class="education-grid">
+            <div class="education-card fade-in">
+                <div class="education-icon">🎓</div>
+                <div class="education-info">
+                    <h3>National University of Sciences and Technology (NUST)</h3>
+                    <p class="education-degree">MS Innovation & Entrepreneurship</p>
+                    <p class="education-date">September 2023 - Present</p>
+                    <p class="education-highlights">
+                        Currently researching digital policy and entrepreneurial innovation at NUST Business School. 
+                        Recognized with Certificate of Appreciation for academic excellence (2023/24).
+                        Active member of organizing committees for ICBMASS and NBS Homecoming events.
+                    </p>
+                </div>
+            </div>
+
+            <div class="education-card fade-in">
+                <div class="education-icon">🌍</div>
+                <div class="education-info">
+                    <h3>Yaşar Üniversitesi (Yaşar University), Turkey</h3>
+                    <p class="education-degree">International Exchange Semester</p>
+                    <p class="education-date">February 2025 - July 2025</p>
+                    <p class="education-highlights">
+                        Selected for prestigious exchange semester program, gaining international academic experience 
+                        and cross-cultural perspectives in business and innovation. Expanding global network and 
+                        learning advanced entrepreneurship concepts.
+                    </p>
+                </div>
+            </div>
+
+            <div class="education-card fade-in">
+                <div class="education-icon">💻</div>
+                <div class="education-info">
+                    <h3>COMSATS University Islamabad</h3>
+                    <p class="education-degree">BS Software Engineering</p>
+                    <p class="education-date">February 2018 - February 2022</p>
+                    <p class="education-highlights">
+                        Graduated with comprehensive foundation in software engineering principles, algorithms, 
+                        data structures, and software development lifecycle. Completed multiple research projects 
+                        in machine learning and recommender systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <div class="section-header">
+                <span class="section-tag">Let's Connect</span>
+                <h2>Get In Touch</h2>
+                <p class="section-description">
+                    Available for freelance projects, collaborations, and exciting opportunities. 
+                    Let's build something amazing together.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:ahmedashrafbse009@gmail.com">ahmedashrafbse009@gmail.com</a>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+923145809559">+92 314 5809559</a>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">📍</div>
+                    <h3>Location</h3>
+                    <p style="color: var(--text-secondary);">Islamabad, Pakistan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Ahmed Ashraf. Crafted with passion and precision.</p>
+    </footer>
 
     <script>
-        // Copy email to clipboard
-        function copyEmail() {
-            navigator.clipboard.writeText('ahmedashrafbse009@gmail.com').then(() => {
-                alert('Email copied to clipboard');
-            }, () => { alert('Copy failed — please copy manually') });
-        }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-        // Contact form — opens a mailto for quick demo (swap with real backend later)
-        function handleContact(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const status = document.getElementById('formStatus');
-            status.textContent = 'Preparing mail...';
-            const subject = encodeURIComponent('Project enquiry — ' + name);
-            const body = encodeURIComponent(message + '\\n\\nContact: ' + email);
-            // open mailto (user can send)
-            window.location.href = `mailto:ahmedashrafbse009@gmail.com?subject=${subject}&body=${body}`;
-            status.textContent = 'Opening your email client...';
-        }
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-        // Simple reveal animation on load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.fade-up').forEach((el, i) => {
-                el.style.animationDelay = (i * 120) + 'ms';
-                el.classList.add('visible');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
             });
         });
     </script>
 </body>
-
 </html>
